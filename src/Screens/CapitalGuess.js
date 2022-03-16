@@ -15,7 +15,7 @@ export default function CapitalGuess() {
   const [numberGuessed, setNumberGuessed] = useState(0)
   const [numberCorrect, setNumberCorrect] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const NUM_QUESTIONS = 40;
+  const NUM_QUESTIONS = 20;
 
   const resetScore = function (){
     //reset score after quiz is finished
