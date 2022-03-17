@@ -22,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser. 
 Use the `npm test`
 command to view the project in the interactive watch mode. <br>
 
-Use `npm run build` to build the app for production to the `build` folder.\
+Use `npm run build` to build the app for production to the `build` folder.
 
 
 
