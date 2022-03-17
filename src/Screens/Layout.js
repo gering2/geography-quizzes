@@ -9,7 +9,7 @@ export default function Layout() {
     <div class="flex flex-row h-full">
       <BrowserRouter> 
   
-          <SideNav  ></SideNav> 
+          <SideNav></SideNav> 
           <Routes>  
             <Route  exact path="/" element={<FlagGuess ></FlagGuess>} ></Route>
             <Route  path="/capital-quiz" element={<CapitalGuess></CapitalGuess>} ></Route>

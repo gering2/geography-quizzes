@@ -51,7 +51,7 @@ export default function CapitalGuess() {
     if(randomCountryArr){
       setRandomCountryArr(randomCountryArr.splice(1)) 
     }
-    const tempSet = new Set()
+    var tempSet = new Set()
 
     if(country) {
       tempSet.add(country);
@@ -62,10 +62,13 @@ export default function CapitalGuess() {
         let randomNum = Math.floor(Math.random()*countries.length);
         tempSet.add(countries[randomNum]); //add random country to set of answers
       }
+      tempSet = shuffle([...tempSet])
 
       setQuizAnswers(tempSet); //set state of 4 multiple choice answers
     }
   },[country])
+
+
 
   useEffect(() => {
     //when countries are set on mount, get random array for randomization of countries
@@ -99,8 +102,9 @@ export default function CapitalGuess() {
         <div class="absolute right-10 top-2 text-2xl ">
           <Score numberCorrect={numberCorrect} numberGuessed={numberGuessed}></Score>
         </div>```
+        
         {activeGame && !showModal?<div class="flex justify-center flex-row mt-6 mb-3 text-gray-200 bg-red-700 px-4 py-6 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u >{country?country.name:'error'}</u>?</div>:null} 
-        {activeGame && !showModal?<div class="w-full"><QuizAnswers  numberGuessed={numberGuessed} setNumberCorrect = {setNumberCorrect} setNumberGuessed={setNumberGuessed} setShowModal={setShowModal} NUM_QUESTIONS={NUM_QUESTIONS} numberCorrect = {numberCorrect}  shuffle={shuffle} chooseRandomCountry={chooseRandomCountry} country = {country} quizAnswers = {shuffle(quizAnswers)} ></QuizAnswers></div>:null}
+        {activeGame && !showModal?<div class="w-full"><QuizAnswers  numberGuessed={numberGuessed} setNumberCorrect = {setNumberCorrect} setNumberGuessed={setNumberGuessed} setShowModal={setShowModal} NUM_QUESTIONS={NUM_QUESTIONS} numberCorrect = {numberCorrect}  shuffle={shuffle} chooseRandomCountry={chooseRandomCountry} country = {country} quizAnswers = {quizAnswers} ></QuizAnswers></div>:null}
         {showModal?<ScoreModal setActiveGame={setActiveGame} resetScore={resetScore}setShowModal={setShowModal} numberCorrect={numberCorrect} numberGuessed={numberGuessed} ></ScoreModal>:null}
       </div>
      
