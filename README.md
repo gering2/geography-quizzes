@@ -11,7 +11,7 @@ A geography quiz app: Take a 1-minute-long flag quiz by typing in the country fo
 
 ## Built using
 [React.js](https://reactjs.org/) <br>
-[Tailwind CSS](https://tailwindcss.com/)
+[Tailwind CSS](https://tailwindcss.com/) <br>
 [RESTCountries](https://restcountries.com/)
 <br>
 <br>
