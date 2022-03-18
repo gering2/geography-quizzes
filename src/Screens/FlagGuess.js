@@ -136,7 +136,7 @@ export default function FlagGuess() {
   },[])
 
   return (
-    <div class="flex grow shrink basis-10/12 h-full flex-col bg-[#1B1717]">
+    <div class="flex  basis-10/12  overflow-auto h-full flex-col bg-[#1B1717]">
       <GuessInput checkForSubmit={checkForSubmit} activeGame = {activeGame} showModal={showModal} handleInputChange={handleInputChange} startGame={startGame}></GuessInput>
       <FlagGuessContent setShowModal = {setShowModal} country = {country} activeGame = {activeGame} resetScore = {resetScore} numberCorrect={numberCorrect} numberGuessed = {numberGuessed} minutesLeft={minutesLeft} secondsLeft={secondsLeft} showModal={showModal} ></FlagGuessContent>
     </div>

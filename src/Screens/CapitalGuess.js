@@ -97,7 +97,7 @@ export default function CapitalGuess() {
 
   return (
     
-      <div class="min-h-sceen flex items-center basis-10/12 h-screen w-full flex-col bg-[#1B1717]">
+      <div class=" flex items-center basis-10/12 h-screen w-full flex-col bg-[#1B1717]">
         {!activeGame && !showModal?<button onClick = {() => {setActiveGame(true)}}class="absolute top-[40%] left-[50%] flex rounded-sm px-12 w-[15%] justify-center py-8  text-white text-xl bg-red-700 hover:bg-red-900">play</button>:null} 
         <div class="absolute right-10 top-2 text-2xl ">
           <Score numberCorrect={numberCorrect} numberGuessed={numberGuessed}></Score>
