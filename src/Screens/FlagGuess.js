@@ -91,9 +91,9 @@ export default function FlagGuess() {
   const checkForSubmit = function (e) {
     //if user presses enter,    
     if(e.key === "Enter") {
-      console.log(country)
+      console.log(flagText)
       setFlagGuess(flagText)
-      e.target.value=''
+    
     }
   }
   const generateRandomArr = function () {
@@ -103,7 +103,9 @@ export default function FlagGuess() {
   useEffect(() => {
     //if guess is made, check the guess
     if(flagGuess) {
+     
       checkGuess(flagGuess)
+      document.getElementById('guessInput').value = ''
     }
   },[flagGuess])
 
@@ -124,15 +126,21 @@ export default function FlagGuess() {
   useEffect(()=> {
     if(country) {
       //reset guess and create a new random array[0] every time country is generated
-      setFlagGuess('')
       setRandomCountryArr(randomCountryArr.slice(1)) 
+
+      //setFlagGuess('')
     }
   },[country])
+
+  
 
   useEffect(()=> {
     //get list of countries on mount
     axios.get('https://restcountries.com/v2/all')
     .then(response => setCountries(response.data))
+    .catch((error) => {
+      console.log(error)
+    })
   },[])
 
   return (

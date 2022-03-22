@@ -14,7 +14,7 @@ export default function QuizAnswers(props) {
   return (
     <div class=" flex flex-col h-full items-center">
       {[...props.quizAnswers].map((quizCountry) => { //render 4 multiple choice questions
-        return <QuizAnswer key={quizCountry.name} setNumberCorrect = {props.setNumberCorrect} setNumberGuessed={props.setNumberGuessed} numberCorrect = {props.numberCorrect} numberGuessed={props.numberGuessed} questionAnswered={questionAnswered} setQuestionAnswered={setQuestionAnswered} country={props.country}  answer={quizCountry.capital}></QuizAnswer>
+        return <QuizAnswer key={quizCountry.name} setNumberCorrect = {props.setNumberCorrect} setNumberGuessed={props.setNumberGuessed} numberCorrect = {props.numberCorrect} numberGuessed={props.numberGuessed} questionAnswered={questionAnswered} setQuestionAnswered={setQuestionAnswered} answer={quizCountry.capital} country={props.country}  ></QuizAnswer>
       })}
       {!quizFinished? <button disabled = {!questionAnswered} onClick = {props.chooseRandomCountry} class="mb-4 px-3 py-2 mt-2 bg-red-700  hover:bg-red-900 text-white">Next&nbsp;{/*String.fromCharCode(8594)*/}</button>: <button  disabled={!questionAnswered} onClick = {props.setShowModal} class="px-3 py-2 mt-2 bg-red-700  hover:bg-red-900 text-white">Next&nbsp;{/*String.fromCharCode(8594)*/}</button>}
     </div>
