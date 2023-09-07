@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ScoreModal(props) {
   return (
-      <div class="w-full flex justify-center items-center h-full">
+      <div class="w-full flex justify-center items-center h-full ">
         <div class =" relative rounded-md flex flex-col text-xl font-medium items-center bg-[#3333] justify-center   text-white w-[30%] h-[50%]">
                <button class="ml-auto px-2 absolute top-1 right-1" 
               onClick = {() => {props.setShowModal(false);

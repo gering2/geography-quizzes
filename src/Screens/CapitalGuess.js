@@ -98,12 +98,12 @@ export default function CapitalGuess() {
   return (
     
       <div class=" overflow-y-auto  flex items-center basis-10/12 h-screen w-full flex-col bg-[#1B1717]">
-        {!activeGame && !showModal?<button onClick = {() => {setActiveGame(true)}}class="absolute top-[40%] left-[50%] flex rounded-sm px-12 w-[15%] justify-center py-8  text-white text-xl bg-red-700 hover:bg-red-900">play</button>:null} 
+        {!activeGame && !showModal?<button onClick = {() => {setActiveGame(true)}}class="absolute top-[40%] left-[50%] flex rounded-sm px-10 w-[15%] justify-center py-6  text-white text-3xl bg-red-700 hover:bg-red-900">Play</button>:null} 
         <div class="absolute right-10 top-2 text-2xl ">
           <Score numberCorrect={numberCorrect} numberGuessed={numberGuessed}></Score>
         </div>```
         
-        {activeGame && !showModal?<div class="flex justify-center flex-row mt-6 mb-3 text-gray-200 bg-red-700 px-4 py-6 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u >{country?country.name:'error'}</u>?</div>:null} 
+        {activeGame && !showModal?<div class="flex justify-center flex-row mt-6 mb-5 text-gray-200 bg-red-700 px-4  rounded-sm py-4 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u >{country?country.name:'error'}</u>?</div>:null} 
         {activeGame && !showModal?<div class="w-full"><QuizAnswers  numberGuessed={numberGuessed} setNumberCorrect = {setNumberCorrect} setNumberGuessed={setNumberGuessed} setShowModal={setShowModal} NUM_QUESTIONS={NUM_QUESTIONS} numberCorrect = {numberCorrect}  shuffle={shuffle} chooseRandomCountry={chooseRandomCountry} country = {country} quizAnswers = {quizAnswers} ></QuizAnswers></div>:null}
         {showModal?<ScoreModal setActiveGame={setActiveGame} resetScore={resetScore}setShowModal={setShowModal} numberCorrect={numberCorrect} numberGuessed={numberGuessed} ></ScoreModal>:null}
       </div>
