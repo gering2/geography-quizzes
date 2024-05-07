@@ -6,7 +6,7 @@ import { Routes,BrowserRouter,Route } from 'react-router-dom'
 export default function Layout() {
    
   return (
-    <div class="flex flex-row h-full">
+    <div class="flex flex-col h-full">
       <BrowserRouter> 
   
           <SideNav></SideNav> 

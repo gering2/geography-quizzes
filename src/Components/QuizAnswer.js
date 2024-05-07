@@ -43,6 +43,6 @@ export default function QuizAnswer({setNumberCorrect,setNumberGuessed,numberCorr
   },[country])
   
   return (
-    <button disabled={questionAnswered} onClick = {(e) => handleAnswerClick(e)} class={`rounded-sm mb-2 mt-1 flex justify-center text-white text-opacity-90  w-[40%] py-6 text-2xl cursor-pointer rounded-md  ${incorrectAnswer?"bg-[#D10203]":correctAnswer?"bg-[#00FF00]":"bg-[#333333]"}`}>{answer}</button>
+    <button disabled={questionAnswered} onClick = {(e) => handleAnswerClick(e)} class={`rounded-sm font-semibold mb-2 mt-1 flex justify-center text-white text-opacity-90  w-[30%] py-4 text-2xl cursor-pointer rounded-md  ${incorrectAnswer?"bg-[#D10203]":correctAnswer?"bg-[#00FF00]":"bg-orange-500"}`}>{answer}</button>
   )
 }

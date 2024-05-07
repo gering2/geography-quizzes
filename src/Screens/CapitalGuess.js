@@ -22,7 +22,6 @@ export default function CapitalGuess() {
     setNumberCorrect(0);
     setNumberGuessed(0);
   }
-
   const generateRandomArr = function () {
     //create array of unique numbers 1-250 (-6 for countries without capitals), choose an initial country for the quiz 
     let randomArr = [...Array(countries.length).keys()] //generate array[0...249]
@@ -97,15 +96,17 @@ export default function CapitalGuess() {
 
   return (
     
-      <div class=" overflow-y-auto  flex items-center basis-10/12 h-screen w-full flex-col bg-[#1B1717]">
-        {!activeGame && !showModal?<button onClick = {() => {setActiveGame(true)}}class="absolute top-[40%] left-[50%] flex rounded-sm px-10 w-[15%] justify-center py-6  text-white text-3xl bg-red-700 hover:bg-red-900">Play</button>:null} 
-        <div class="absolute right-10 top-2 text-2xl ">
+      <div class=" overflow-y-auto  flex justify-center items-center h-screen w-full flex-col ">
+        <div class="absolute bg-gray-100 min-h-[40%] rounded-md right-[] w-[600px] text-white ">
+        {!activeGame && !showModal?<button onClick = {() => {setActiveGame(true)}}class="flex relative top-14 m-auto  rounded-sm  px-10 w-[15%] justify-center py-4 px-1 font-semibold text-white text-3xl bg-orange-600 hover:bg-orange-800">Play</button>:null} 
+        <div class="absolute right-[10%] top-[50%] text-2xl text-white">
           <Score numberCorrect={numberCorrect} numberGuessed={numberGuessed}></Score>
-        </div>```
+        </div>
         
-        {activeGame && !showModal?<div class="flex justify-center flex-row mt-6 mb-5 text-gray-200 bg-red-700 px-4  rounded-sm py-4 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u >{country?country.name:'error'}</u>?</div>:null} 
+        {activeGame && !showModal?<div class="flex justify-center  flex-row mt-6 mb-5 text-gray-200 bg-red-700 px-4  rounded-sm py-4 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u class="font-bold">{country?country.name:'error'}</u>?</div>:null} 
         {activeGame && !showModal?<div class="w-full"><QuizAnswers  numberGuessed={numberGuessed} setNumberCorrect = {setNumberCorrect} setNumberGuessed={setNumberGuessed} setShowModal={setShowModal} NUM_QUESTIONS={NUM_QUESTIONS} numberCorrect = {numberCorrect}  shuffle={shuffle} chooseRandomCountry={chooseRandomCountry} country = {country} quizAnswers = {quizAnswers} ></QuizAnswers></div>:null}
         {showModal?<ScoreModal setActiveGame={setActiveGame} resetScore={resetScore}setShowModal={setShowModal} numberCorrect={numberCorrect} numberGuessed={numberGuessed} ></ScoreModal>:null}
+        </div>
       </div>
      
   )

@@ -144,9 +144,11 @@ export default function FlagGuess() {
   },[])
 
   return (
-    <div class="flex  basis-10/12  overflow-y-auto h-full flex-col bg-[#1B1717]">
+    <div class="flex items-center justify-center overflow-y-auto h-full flex-col bg-[#1B1717]">
+      <div class="bg-gray-100 w-[40%] rounded-md px-2 py-8">
       <GuessInput checkForSubmit={checkForSubmit} activeGame = {activeGame} showModal={showModal} handleInputChange={handleInputChange} startGame={startGame}></GuessInput>
       <FlagGuessContent setShowModal = {setShowModal} country = {country} activeGame = {activeGame} resetScore = {resetScore} numberCorrect={numberCorrect} numberGuessed = {numberGuessed} minutesLeft={minutesLeft} secondsLeft={secondsLeft} showModal={showModal} ></FlagGuessContent>
+      </div>
     </div>
   )
 }

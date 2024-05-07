@@ -5,9 +5,9 @@ export default function Flags(props) {
 
   return (
     !props.showModal?
-    <div class="bg-zinc-800 shadow-2xl rounded-sm ">
+    <div class="w-80 h-64 max-w-100">
     {props.country ?
-    <img class = "w-80 max-h-64 max-w-100"src={props.country.flag}></img>:<div></div> }
+    <img class = "object-contain "src={props.country.flag}></img>:<div></div> }
     </div>:null
   )
 }
