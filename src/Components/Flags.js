@@ -7,7 +7,7 @@ export default function Flags(props) {
     !props.showModal?
     <div class="w-80 h-64 max-w-100">
     {props.country ?
-    <img class = "object-contain "src={props.country.flag}></img>:<div></div> }
+    <img class = "object-contain "src={props.country.flags.png}></img>:<div></div> }
     </div>:null
   )
 }

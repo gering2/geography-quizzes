@@ -86,7 +86,7 @@ export default function CapitalGuess() {
   
   useEffect(() => {
     //on mount, get full list of countries
-    axios.get('https://restcountries.com/v2/all')
+    axios.get('https://restcountries.com/v3.1/all?fields=name,capital')
     .then(response => response.data.filter((item) => {
       return item.hasOwnProperty('capital') //remove country from country list if it does not have a capital
     }))
@@ -103,7 +103,7 @@ export default function CapitalGuess() {
           <Score numberCorrect={numberCorrect} numberGuessed={numberGuessed}></Score>
         </div>
         
-        {activeGame && !showModal?<div class="flex justify-center  flex-row mt-6 mb-5 text-gray-200 bg-red-700 px-4  rounded-sm py-4 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u class="font-bold">{country?country.name:'error'}</u>?</div>:null} 
+        {activeGame && !showModal?<div class="flex justify-center  flex-row mt-6 mb-5 text-gray-200 bg-red-700 px-4  rounded-sm py-4 text-2xl text-opacity-90 whitespace-nowrap w-ma">What is the capital of&nbsp;<u class="font-bold">{country?country.name.common:'error'}</u>?</div>:null} 
         {activeGame && !showModal?<div class="w-full"><QuizAnswers  numberGuessed={numberGuessed} setNumberCorrect = {setNumberCorrect} setNumberGuessed={setNumberGuessed} setShowModal={setShowModal} NUM_QUESTIONS={NUM_QUESTIONS} numberCorrect = {numberCorrect}  shuffle={shuffle} chooseRandomCountry={chooseRandomCountry} country = {country} quizAnswers = {quizAnswers} ></QuizAnswers></div>:null}
         {showModal?<ScoreModal setActiveGame={setActiveGame} resetScore={resetScore}setShowModal={setShowModal} numberCorrect={numberCorrect} numberGuessed={numberGuessed} ></ScoreModal>:null}
         </div>

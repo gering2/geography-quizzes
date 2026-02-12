@@ -7,7 +7,7 @@ export default function QuizAnswer({setNumberCorrect,setNumberGuessed,numberCorr
   const [incorrectAnswer,setIncorrectAnswer] = useState(false)
   const handleAnswerClick = function (e) {
     //if correct answer is selected
-    if(e.target.innerHTML === country.capital) {
+    if(e.target.innerHTML === country.capital[0]) {
       setCorrectAnswer(true)
       setNumberCorrect(numberCorrect+1)
       console.log('hi')

@@ -65,7 +65,7 @@ export default function FlagGuess() {
       return country.toLowerCase();
     })
     //if guess is correct
-    if(guess.toLowerCase() === country.name.toLowerCase()||
+    if(guess.toLowerCase() === country.name.common.toLowerCase()||
     lowerAltSpellings.includes(guess.toLowerCase())) {
      setNumberCorrect(numberCorrect+1)
     }
@@ -136,7 +136,7 @@ export default function FlagGuess() {
 
   useEffect(()=> {
     //get list of countries on mount
-    axios.get('https://restcountries.com/v2/all')
+    axios.get('https://restcountries.com/v3.1/all?fields=name,flags,altSpellings')
     .then(response => setCountries(response.data))
     .catch((error) => {
       console.log(error)
