@@ -21,6 +21,8 @@ export default function FlagGuess() {
   const [activeGame,setActiveGame] = useState(false)
   const [showModal,setShowModal] = useState(false)
   const [randomCountryArr, setRandomCountryArr] = useState(null)
+  // name of the most recent incorrect guess (shown briefly)
+  const [missedName, setMissedName] = useState('')
   const handleInputChange = function(e) {
     //handle user input     
     setFlagText(e.target.value)
@@ -67,10 +69,14 @@ export default function FlagGuess() {
     //if guess is correct
     if(guess.toLowerCase() === country.name.common.toLowerCase()||
     lowerAltSpellings.includes(guess.toLowerCase())) {
-     setNumberCorrect(numberCorrect+1)
+      setNumberCorrect(numberCorrect+1)
+    } else {
+      // record miss and clear after a couple seconds
+      setMissedName(country.name.common)
+      setTimeout(() => setMissedName(''), 2000)
     }
-  setNumberGuessed(numberGuessed+1)
-  chooseRandomCountry()
+    setNumberGuessed(numberGuessed+1)
+    chooseRandomCountry()
   }
 
 
@@ -144,10 +150,27 @@ export default function FlagGuess() {
   },[])
 
   return (
-    <div class="flex items-center justify-center overflow-y-auto h-full flex-col bg-[#1B1717]">
-      <div class="bg-gray-100 w-[40%] rounded-md px-2 py-8">
-      <GuessInput checkForSubmit={checkForSubmit} activeGame = {activeGame} showModal={showModal} handleInputChange={handleInputChange} startGame={startGame}></GuessInput>
-      <FlagGuessContent setShowModal = {setShowModal} country = {country} activeGame = {activeGame} resetScore = {resetScore} numberCorrect={numberCorrect} numberGuessed = {numberGuessed} minutesLeft={minutesLeft} secondsLeft={secondsLeft} showModal={showModal} ></FlagGuessContent>
+    <div className="flex items-center justify-center overflow-y-auto h-full flex-col bg-[#1B1717]">
+      <div class="bg-gray-100 w-[30%] h-[60%]  max-w-full rounded-md px-2 py-8">
+      <GuessInput
+        checkForSubmit={checkForSubmit}
+        activeGame={activeGame}
+        showModal={showModal}
+        handleInputChange={handleInputChange}
+        startGame={startGame}
+      />
+      <FlagGuessContent
+        setShowModal={setShowModal}
+        country={country}
+        activeGame={activeGame}
+        resetScore={resetScore}
+        numberCorrect={numberCorrect}
+        numberGuessed={numberGuessed}
+        minutesLeft={minutesLeft}
+        secondsLeft={secondsLeft}
+        showModal={showModal}
+        missedName={missedName}
+      />
       </div>
     </div>
   )
