@@ -38,7 +38,7 @@ export default function ScoreModal(props) {
   };
 
   return (
-      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[90%] max-w-2xl h-[600px] shadow-2xl rounded-xl overflow-hidden border border-white/10 flex flex-col">
+      <div className="w-[90vw] max-w-2xl h-[600px] shadow-2xl rounded-xl overflow-hidden   flex flex-col mx-auto">
         <div className="relative text-white flex flex-col font-medium items-center bg-gradient-to-r from-blue-600 to-blue-500 justify-center rounded-t-xl py-4 px-6 flex-shrink-0">
                 <button
                 className="absolute left-4 h-9 w-9 rounded-full bg-white/20 hover:bg-white/30 hover:scale-110 transition-all flex items-center justify-center font-bold text-lg"

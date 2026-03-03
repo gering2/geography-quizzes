@@ -19,3 +19,12 @@ body {
 code {
   font-family: 'Open Sans', sans-serif;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
