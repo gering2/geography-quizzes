@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import axios from 'axios'
 import GuessInput from '../../components/GuessInput'
 import FlagQuizContent from './FlagQuizContent'
@@ -12,11 +12,12 @@ export default function FlagQuiz() {
 
   const [country, setCountry] = useState(null)
   const [countries, setCountries] = useState(null)
-  const [flagGuess, setFlagGuess] = useState(null)
   const [flagText, setFlagText] = useState('')
   const [randomCountryArr, setRandomCountryArr] = useState(null)
   // name of the most recent incorrect guess (shown briefly)
   const [missedName, setMissedName] = useState('')
+  const submitLockRef = useRef(false)
+  const submitUnlockTimerRef = useRef(null)
   const handleInputChange = function(e) {
     setFlagText(e.target.value)
   }
@@ -40,16 +41,17 @@ export default function FlagQuiz() {
 
   const checkGuess = useCallback(function (guess) {
     //set alternate spellings of generated country to lowercase 
-    if (!country) {
+    if (!country || !guess || !guess.trim()) {
       return;
     }
+    const normalizedGuess = guess.trim().toLowerCase();
     let lowerAltSpellings = country.altSpellings.map((country) => {
       return country.toLowerCase();
     })
     //if guess is correct
     const isCorrect =
-      guess.toLowerCase() === country.name.common.toLowerCase() ||
-      lowerAltSpellings.includes(guess.toLowerCase());
+      normalizedGuess === country.name.common.toLowerCase() ||
+      lowerAltSpellings.includes(normalizedGuess);
 
     if (!isCorrect) {
       setMissedName(country.name.common);
@@ -57,14 +59,35 @@ export default function FlagQuiz() {
     }
 
     // add entry to history (hook handles score increment)
-    quiz.addToHistory(guess, country.name.common, country.flags.png, isCorrect);
+    quiz.addToHistory(guess.trim(), country.name.common, country.flags.png, isCorrect);
     chooseRandomCountry();
   }, [country, quiz, chooseRandomCountry])
 
   const checkForSubmit = function (e) {
     //if user presses enter,    
     if(e.key === "Enter") {
-      setFlagGuess(flagText)
+      const submittedGuess = flagText.trim()
+      if (!submittedGuess) {
+        return
+      }
+      if (submitLockRef.current) {
+        e.preventDefault()
+        return
+      }
+
+      submitLockRef.current = true
+      if (submitUnlockTimerRef.current) {
+        clearTimeout(submitUnlockTimerRef.current)
+      }
+
+      checkGuess(submittedGuess)
+      setFlagText('')
+      e.target.value = ''
+
+      submitUnlockTimerRef.current = setTimeout(() => {
+        submitLockRef.current = false
+        submitUnlockTimerRef.current = null
+      }, 200)
     }
   }
   const generateRandomArr = useCallback(function () {
@@ -74,17 +97,6 @@ export default function FlagQuiz() {
     let randomArr = [...Array(countries.length).keys()] //generate array[0...249]
     setRandomCountryArr(shuffle(randomArr))
   }, [countries, shuffle])
-
-  useEffect(() => {
-    //if guess is made, check the guess
-    if(flagGuess) {
-     
-      checkGuess(flagGuess)
-      setFlagGuess(null)
-      document.getElementById('guessInput').value = ''
-    }
-  },[flagGuess, checkGuess])
-
 
   useEffect(() => {
     //after setting random array for first time, choose the initial country
@@ -118,6 +130,14 @@ export default function FlagQuiz() {
       console.log(error)
     })
   },[])
+
+  useEffect(() => {
+    return () => {
+      if (submitUnlockTimerRef.current) {
+        clearTimeout(submitUnlockTimerRef.current)
+      }
+    }
+  }, [])
 
   return (
     <QuizLayout
