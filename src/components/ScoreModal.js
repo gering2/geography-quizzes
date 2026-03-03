@@ -38,8 +38,8 @@ export default function ScoreModal(props) {
   };
 
   return (
-      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[90%] max-w-2xl shadow-2xl rounded-xl overflow-hidden border border-white/10">
-        <div className="relative text-white flex flex-col font-medium items-center bg-gradient-to-r from-blue-600 to-blue-500 justify-center rounded-t-xl py-4 px-6">
+      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[90%] max-w-2xl h-[600px] shadow-2xl rounded-xl overflow-hidden border border-white/10 flex flex-col">
+        <div className="relative text-white flex flex-col font-medium items-center bg-gradient-to-r from-blue-600 to-blue-500 justify-center rounded-t-xl py-4 px-6 flex-shrink-0">
                 <button
                 className="absolute left-4 h-9 w-9 rounded-full bg-white/20 hover:bg-white/30 hover:scale-110 transition-all flex items-center justify-center font-bold text-lg"
                 onClick = {() => {props.setShowModal(false);
@@ -55,7 +55,7 @@ export default function ScoreModal(props) {
 
         {/* show guess history table if available */}
         {props.guessHistory && props.guessHistory.length > 0 ? (
-          <div className="scrollbar-hide overflow-auto max-h-96 rounded-b-xl bg-white">
+          <div className="scrollbar-hide overflow-auto flex-1 rounded-b-xl bg-white">
             <table className="w-full text-left overflow-y-auto rounded-b-xl">
               <thead className="sticky top-0 z-10">
                 <tr className="bg-gradient-to-b from-slate-700 to-slate-800 text-white shadow-md">

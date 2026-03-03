@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState, useEffect} from 'react'
-import Flags from '../../components/Flags'
+import { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import GuessInput from '../../components/GuessInput'
 import FlagQuizContent from './FlagQuizContent'
@@ -22,8 +21,28 @@ export default function FlagQuiz() {
     setFlagText(e.target.value)
   }
 
-  const checkGuess = function (guess) {
+  const shuffle = useCallback(function (arr) {
+    //shuffle array in place
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, [])
+
+  const chooseRandomCountry = useCallback(function() {
+    //choose random country out of 250
+    if(!countries || !randomCountryArr || randomCountryArr.length === 0) {
+      return;
+    }
+    setCountry(countries[randomCountryArr[0]])
+  }, [countries, randomCountryArr])
+
+  const checkGuess = useCallback(function (guess) {
     //set alternate spellings of generated country to lowercase 
+    if (!country) {
+      return;
+    }
     let lowerAltSpellings = country.altSpellings.map((country) => {
       return country.toLowerCase();
     })
@@ -40,60 +59,50 @@ export default function FlagQuiz() {
     // add entry to history (hook handles score increment)
     quiz.addToHistory(guess, country.name.common, country.flags.png, isCorrect);
     chooseRandomCountry();
-  }
+  }, [country, quiz, chooseRandomCountry])
 
-
-  const shuffle = function (arr) {
-    //shuffle array in place
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  const chooseRandomCountry = function() {
-    //choose random country out of 250
-      setCountry(countries[randomCountryArr[0]])  
-      
-  }
   const checkForSubmit = function (e) {
     //if user presses enter,    
     if(e.key === "Enter") {
       setFlagGuess(flagText)
     }
   }
-  const generateRandomArr = function () {
+  const generateRandomArr = useCallback(function () {
+    if (!countries) {
+      return;
+    }
     let randomArr = [...Array(countries.length).keys()] //generate array[0...249]
     setRandomCountryArr(shuffle(randomArr))
-  }
+  }, [countries, shuffle])
+
   useEffect(() => {
     //if guess is made, check the guess
     if(flagGuess) {
      
       checkGuess(flagGuess)
+      setFlagGuess(null)
       document.getElementById('guessInput').value = ''
     }
-  },[flagGuess])
+  },[flagGuess, checkGuess])
 
 
   useEffect(() => {
     //after setting random array for first time, choose the initial country
-    if(randomCountryArr && randomCountryArr.length === countries.length){
+    if(countries && randomCountryArr && randomCountryArr.length === countries.length){
       chooseRandomCountry()
     }
-  },[randomCountryArr])
+  },[randomCountryArr, countries, chooseRandomCountry])
 
   useEffect(()=> {
     if(countries) {
       generateRandomArr()
     }
-  },[countries])
+  },[countries, generateRandomArr])
 
   useEffect(()=> {
     if(country) {
       //reset guess and create a new random array[0] every time country is generated
-      setRandomCountryArr(randomCountryArr.slice(1)) 
+      setRandomCountryArr((prev) => (prev ? prev.slice(1) : prev)) 
 
       //setFlagGuess('')
     }

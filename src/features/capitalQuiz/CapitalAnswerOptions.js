@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CapitalQuizOption from './CapitalQuizOption'
 export default function CapitalAnswerOptions(props) {
   const [questionAnswered, setQuestionAnswered] = useState(false)
-  const [quizFinished,setQuizFinished] = useState(false)
+  const quizFinished = false
 
   /*
   useEffect(() => {
@@ -40,10 +40,10 @@ export default function CapitalAnswerOptions(props) {
       
       return () => clearTimeout(timer);
     }
-  }, [questionAnswered, quizFinished])
+  }, [props.chooseRandomCountry, props.setShowModal, questionAnswered, quizFinished])
   
   return (
-    <div className=" flex flex-col gap-3 h-full items-center">
+    <div className="flex flex-col gap-4 h-full items-center">
       {[...props.quizAnswers].map((quizCountry) => { //render 4 multiple choice questions
         return <CapitalQuizOption 
           key={quizCountry.name.common} 

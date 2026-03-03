@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function CapitalQuizOption({addToHistory, numberCorrect, numberGuessed, answer, country, setQuestionAnswered, questionAnswered, isCorrectAnswer, startGame, gameStarted, setGameStarted}) {
+export default function CapitalQuizOption({ addToHistory, answer, country, setQuestionAnswered, questionAnswered, isCorrectAnswer, startGame, gameStarted, setGameStarted }) {
 
   const [correctAnswer,setCorrectAnswer] = useState(false)
   const [incorrectAnswer,setIncorrectAnswer] = useState(false)
   
-  const handleAnswerClick = function (e) {
+  const handleAnswerClick = function () {
     // Start the game on first click
     if (!gameStarted) {
       startGame();
@@ -30,14 +30,14 @@ export default function CapitalQuizOption({addToHistory, numberCorrect, numberGu
     if(correctAnswer){
       setQuestionAnswered(true)
     }
-  },[correctAnswer])
+  },[correctAnswer, setQuestionAnswered])
 
   useEffect(() => {
     if(incorrectAnswer){
       setQuestionAnswered(true)
     }
     
-  },[incorrectAnswer])
+  },[incorrectAnswer, setQuestionAnswered])
   
   useEffect(() => {
     //reset values each time a new question is rendered
@@ -47,16 +47,18 @@ export default function CapitalQuizOption({addToHistory, numberCorrect, numberGu
   
   const shouldHighlight = questionAnswered && !correctAnswer && isCorrectAnswer;
   const feedbackClass = incorrectAnswer
-    ? "bg-[#D10203] scale-[1.02] shadow-red-400/70"
+    ? "bg-red-600 scale-[1.02] shadow-red-400/60"
     : correctAnswer
-      ? "bg-[#00FF00] scale-[1.02] shadow-green-400/70"
+      ? "bg-emerald-600 scale-[1.02] shadow-emerald-400/60"
       : shouldHighlight
-        ? "bg-[#00FF00] animate-pulse scale-[1.02] shadow-green-400/70"
-        : "bg-blue-500";
+        ? "bg-emerald-600 animate-pulse scale-[1.02] shadow-emerald-400/60"
+        : "bg-gradient-to-r from-blue-500 to-indigo-500";
   
   return (
-    <button disabled={questionAnswered} onClick = {(e) => handleAnswerClick(e)} 
-    className={`w-56 rounded-sm font-semibold px-4 flex justify-center text-white text-opacity-90 py-3 text-md
-       cursor-pointer rounded-md transition-all duration-200 ease-out transform shadow-lg ${!questionAnswered ? "hover:bg-blue-400 hover:shadow-xl hover:scale-[1.01]" : ""} ${feedbackClass} overflow-hidden`}>{answer}</button>
+    <button disabled={questionAnswered} onClick={handleAnswerClick} 
+     className={`w-72 font-semibold px-6 flex justify-center text-white py-3.5 text-lg
+       cursor-pointer rounded-xl transition-all duration-200 ease-out transform shadow-md border border-white/15
+       ${!questionAnswered ? "hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 active:scale-95 active:translate-y-0" : "cursor-default"}
+       ${feedbackClass} overflow-hidden`}>{answer}</button>
   )
 }

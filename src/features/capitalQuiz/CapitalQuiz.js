@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import axios from 'axios'
 import { useState} from 'react'
 import CapitalAnswerOptions from './CapitalAnswerOptions'
@@ -16,34 +16,38 @@ export default function CapitalQuiz() {
   const [quizAnswers,setQuizAnswers] = useState(new Set())
   const [gameStarted, setGameStarted] = useState(false)
   const NUM_QUESTIONS = 20;
-  const generateRandomArr = function () {
-    //create array of unique numbers 1-250 (-6 for countries without capitals), choose an initial country for the quiz 
-    let randomArr = [...Array(countries.length).keys()] //generate array[0...249]
-
-    setRandomCountryArr(shuffle(randomArr)); //array of random numbers 0-249
-    //choose initial country for quiz
-  }
-
- const shuffle = function (arr) {
+ const shuffle = useCallback(function (arr) {
    //shuffle array in place
   for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
-}
+}, [])
 
-  const chooseRandomCountry = function () {
+  const generateRandomArr = useCallback(function () {
+    //create array of unique numbers 1-250 (-6 for countries without capitals), choose an initial country for the quiz 
+    if (!countries) {
+      return;
+    }
+    let randomArr = [...Array(countries.length).keys()] //generate array[0...249]
+
+    setRandomCountryArr(shuffle(randomArr)); //array of random numbers 0-249
+    //choose initial country for quiz
+  }, [countries, shuffle])
+
+  const chooseRandomCountry = useCallback(function () {
     //choose random country 
   //set country to first element of random array and remove the first element
+      if(!countries || !randomCountryArr || randomCountryArr.length === 0) {
+        return;
+      }
       setCountry(countries[randomCountryArr[0]]);
       //countries.splice(randomCountryArr[0],1)
-    } 
+    }, [countries, randomCountryArr])
   useEffect(() => {
     //when the country is set, generate the other 3 multiple choice answers
-    if(randomCountryArr){
-      setRandomCountryArr(randomCountryArr.splice(1));
-    }
+    setRandomCountryArr((prev) => (prev ? prev.slice(1) : prev));
     var tempSet = new Set()
 
     if(country) {
@@ -61,7 +65,7 @@ export default function CapitalQuiz() {
 
       setQuizAnswers(tempSet); //set state of 4 multiple choice answers
     }
-  },[country])
+  },[country, countries, shuffle])
 
 
 
@@ -70,15 +74,15 @@ export default function CapitalQuiz() {
     if(countries){
       generateRandomArr();
     }
-  },[countries])
+  },[countries, generateRandomArr])
  
 
   useEffect(() => {
     //after setting random array for first time, choose the initial country
-    if(randomCountryArr && randomCountryArr.length === (countries.length)) {
+    if(countries && randomCountryArr && randomCountryArr.length === (countries.length)) {
       chooseRandomCountry(); 
     }
-  },[randomCountryArr])
+  },[randomCountryArr, countries, chooseRandomCountry])
   
   useEffect(() => {
     //on mount, get full list of countries
@@ -105,14 +109,14 @@ export default function CapitalQuiz() {
           </div>
 
           {!quiz.showModal && country ? (
-            <div className="mb-4 mt-4 px-3 py-1 border border-gray-300 rounded-full bg-white text-gray-700 shadow-sm">
+            <div className="mb-4 mt-4 px-4 py-1.5 border border-indigo-100 rounded-full bg-indigo-50 text-indigo-700 shadow-sm font-medium">
               {quiz.minutesLeft}:{quiz.secondsLeft < 10 ? '0' : ''}{quiz.secondsLeft}
             </div>
           ) : null}
 
           {country && !quiz.showModal ? (
-            <div className="flex justify-center flex-row mt-2 mb-6 text-gray-200 bg-blue-700 px-5 rounded-lg py-3 text-xl text-opacity-95 whitespace-nowrap shadow-lg">
-              What is the capital of&nbsp;<u className="font-bold">{country.name.common}</u>?
+            <div className="flex justify-center text-center mt-2 mb-6 text-white bg-gradient-to-r from-indigo-600 to-blue-600 px-6 rounded-xl py-3 text-xl shadow-lg max-w-full border border-indigo-500/30">
+              What is the capital of&nbsp;<u className="font-bold decoration-indigo-100 underline-offset-2">{country.name.common}</u>?
             </div>
           ) : null}
 
@@ -141,11 +145,10 @@ export default function CapitalQuiz() {
             </div>
           ) : null}
 
-          {gameStarted ? (
-            <div className="mt-4">
-              <Score numberCorrect={quiz.numberCorrect} numberGuessed={quiz.numberGuessed}></Score>
-            </div>
-          ) : null}
+          {/* Score in fixed position, always visible */}
+          <div className="mt-6">
+            <Score numberCorrect={quiz.numberCorrect} numberGuessed={quiz.numberGuessed}></Score>
+          </div>
         </div>
       }
       modal={
