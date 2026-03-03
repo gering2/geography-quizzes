@@ -19,19 +19,18 @@ export default function FlagQuizContent(props) {
 
       <Flags showModal={props.showModal} country={props.country} />
 
-      {/* show missed country name briefly below flag */}
-      {props.missedName ? (
-        <div className="mt-3 text-red-600 font-semibold bg-red-50 border border-red-200 rounded-md px-3 py-1">
-          Missed: {props.missedName}
-        </div>
-      ) : null}
+      {/* Score in fixed position, always visible */}
+      <div className="mt-4">
+        <Score
+          numberCorrect={props.numberCorrect}
+          numberGuessed={props.numberGuessed}
+        />
+      </div>
 
-      {props.activeGame ? (
-        <div className="mt-4">
-          <Score
-            numberCorrect={props.numberCorrect}
-            numberGuessed={props.numberGuessed}
-          />
+      {/* show missed country name briefly below score */}
+      {props.missedName ? (
+        <div className="mt-2 text-red-600 font-semibold bg-red-50 border border-red-200 rounded-md px-3 py-1">
+          Missed: {props.missedName}
         </div>
       ) : null}
      
