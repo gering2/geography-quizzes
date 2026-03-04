@@ -25,6 +25,14 @@ export default function SideNav() {
           >
             🏛️ Capital Quiz
           </NavLink>
+          <NavLink
+            to="/population-quiz"
+            className={({ isActive }) =>
+              `px-3 py-1 rounded-md border-b-2 transition-all duration-200 ${isActive ? 'text-white bg-white/10 border-blue-300 shadow-sm' : 'text-gray-300 border-transparent hover:text-white hover:bg-white/5 hover:-translate-y-0.5'}`
+            }
+          >
+            📊 Population Quiz
+          </NavLink>
         </ul>
       </div>
     </nav>
