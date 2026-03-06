@@ -1,8 +1,11 @@
 # Geography-quizzes
 A geography quiz app: Take a 1-minute-long flag quiz by typing in the country for the flag shown or take a multiple-choice capital quiz where the country is given and the user must choose the correct capital.  <br><br><br>
-<img width="958" alt="image" src="https://user-images.githubusercontent.com/101687188/158711914-59129724-ca7b-4158-8d82-f0974652f8ec.png"> 
+<img width="1277" height="668" alt="image" src="https://github.com/user-attachments/assets/f2ed7d52-4da3-4716-b65a-2db83c03c9b1" />
 <br><br>
-<img width="959" alt="image" src="https://user-images.githubusercontent.com/101687188/158711957-5c638e57-3179-4317-902b-0ff736babdf3.png">
+<img width="1260" height="667" alt="image" src="https://github.com/user-attachments/assets/bd8d2425-c924-4d27-8694-aed99224962b" />
+<br><br>
+<img width="1274" height="669" alt="image" src="https://github.com/user-attachments/assets/91d49662-0597-4cd4-a206-ae5bac0345d1" />
+
 
 
 
