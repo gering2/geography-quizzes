@@ -4,11 +4,9 @@ A geography quiz app: Take a 1-minute-long flag quiz by typing in the country fo
 "> 
 <br><br>
 <img width="1260" height="667" alt="image" src="https://github.com/user-attachments/assets/bd8d2425-c924-4d27-8694-aed99224962b" />
-">
 <br><br>
 <img width="1260" height="667" alt="image" src=<img width="1274" height="669" alt="image" src="https://github.com/user-attachments/assets/91d49662-0597-4cd4-a206-ae5bac0345d1" />
-" />
-">  
+
 
 
 
