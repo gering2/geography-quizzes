@@ -61,24 +61,33 @@ export default function CapitalQuiz() {
     setGameStarted(false)
   }
 
+  const totalSecondsLeft = quiz.minutesLeft * 60 + quiz.secondsLeft
+  const isUrgent = quiz.activeGame && totalSecondsLeft <= 10
+  const timerToneClass = isUrgent
+    ? 'border-amber-300 bg-amber-50 text-amber-900 shadow-[0_3px_10px_rgba(245,158,11,0.18)]'
+    : quiz.activeGame
+      ? 'border-blue-200 bg-blue-50 text-blue-900 shadow-[0_3px_10px_rgba(37,99,235,0.16)]'
+      : 'border-slate-300 bg-white text-slate-700 shadow-[0_2px_8px_rgba(15,23,42,0.06)]'
+
   return (
     <QuizLayout
       showModal={quiz.showModal}
       children={
-        <div className="justify-center items-center flex flex-col">
+        <div className="flex flex-col items-center justify-center">
           <div className="text-center">
-            <h2 className="text-slate-900 text-3xl font-bold tracking-tight">Guess The Capital</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Challenge Mode</p>
+            <h2 className="mt-1 text-3xl font-bold tracking-tight text-[var(--text)]">Guess The Capital</h2>
           </div>
 
           {!quiz.showModal && country ? (
-            <div className="mb-4 mt-4 px-4 py-1.5 border border-slate-300 rounded-full bg-slate-100 text-slate-700 shadow-sm font-medium">
+            <div className={`mb-4 mt-4 inline-flex min-w-[4.5rem] justify-center rounded-full border px-4 py-1.5 font-mono text-sm font-semibold tracking-[0.06em] transition-colors ${timerToneClass}`}>
               {quiz.minutesLeft}:{quiz.secondsLeft < 10 ? '0' : ''}{quiz.secondsLeft}
             </div>
           ) : null}
 
           {country && !quiz.showModal ? (
-            <div className="flex justify-center text-center mt-2 mb-6 text-white bg-gradient-to-r from-blue-600 to-sky-500 px-6 rounded-xl py-3 text-xl shadow-lg max-w-full border border-blue-500/30">
-              What is the capital of&nbsp;<u className="font-bold decoration-blue-100 underline-offset-2">{country.name.common}</u>?
+            <div className="mb-6 mt-4 flex max-w-full justify-center rounded-[14px] border border-slate-200 bg-slate-50 px-6 py-3 text-center text-xl text-slate-800 shadow-[0_2px_8px_rgba(15,23,42,0.05)]">
+              What is the capital of&nbsp;<u className="font-bold decoration-slate-400 underline-offset-2">{country.name.common}</u>?
             </div>
           ) : null}
 
@@ -107,7 +116,7 @@ export default function CapitalQuiz() {
             </div>
           ) : null}
 
-          <div className="mt-6">
+          <div className="mt-7">
             <Score numberCorrect={quiz.numberCorrect} numberGuessed={quiz.numberGuessed}></Score>
           </div>
         </div>

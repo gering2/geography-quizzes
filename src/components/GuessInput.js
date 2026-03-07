@@ -4,23 +4,25 @@ export default function GuessInput({activeGame,showModal,handleInputChange,check
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="text-center">
-        <h2 className="text-slate-900 text-3xl font-bold tracking-tight">Guess The Flag</h2>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Challenge Mode</p>
+        <h2 className="mt-1 text-3xl font-bold tracking-tight text-[var(--text)]">Guess The Flag</h2>
       </div>
-      <div className="mt-8 flex items-center justify-center flex-row gap-2">
+      <div className="mt-8 flex w-full max-w-md flex-row items-center justify-center gap-2.5">
         <input
           id="guessInput"
           autoComplete="off"
+          placeholder="Type a country..."
           disabled={!activeGame}
           onKeyDown={(e) => {checkForSubmit(e)}}
           onChange={(e) => handleInputChange(e)}
-          className="font-semibold rounded-md bg-white border border-slate-300 text-slate-700 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-20"
+          className="w-full rounded-[var(--radius-control)] border border-slate-300 bg-white px-4 py-2.5 text-[1.02rem] font-semibold leading-6 tracking-[0.01em] text-slate-900 caret-blue-600 shadow-[var(--shadow-control)] outline-none transition-all placeholder:font-medium placeholder:tracking-normal placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:shadow-[0_6px_14px_rgba(37,99,235,0.15)] focus:ring-2 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-45"
         ></input>
         <button
           disabled={activeGame || showModal}
-          className="w-20 rounded-md disabled:opacity-40 disabled:hover:bg-blue-600 py-2 text-white justify-center relative bg-gradient-to-r from-blue-600 to-sky-500 font-bold hover:from-blue-700 hover:to-sky-600 transition-colors"
+          className="relative w-24 rounded-[var(--radius-control)] border border-blue-600 bg-blue-600 py-2.5 font-bold text-white shadow-[0_4px_10px_rgba(37,99,235,0.28)] transition-all hover:border-blue-700 hover:bg-blue-700 hover:shadow-[0_6px_14px_rgba(37,99,235,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-200 disabled:text-slate-500 disabled:shadow-none"
           onClick={startGame}
         >
-          Play
+          {activeGame ? 'Playing' : 'Play'}
         </button>
       </div>
     </div>

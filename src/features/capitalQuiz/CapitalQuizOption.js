@@ -47,18 +47,17 @@ export default function CapitalQuizOption({ addToHistory, answer, country, setQu
   
   const shouldHighlight = questionAnswered && !correctAnswer && isCorrectAnswer;
   const feedbackClass = incorrectAnswer
-    ? "bg-red-600 scale-[1.02] shadow-red-400/60"
+    ? "border-rose-200 bg-rose-100 text-rose-800"
     : correctAnswer
-      ? "bg-emerald-600 scale-[1.02] shadow-emerald-400/60"
+      ? "border-emerald-200 bg-emerald-100 text-emerald-800"
       : shouldHighlight
-        ? "bg-emerald-600 animate-pulse scale-[1.02] shadow-emerald-400/60"
-        : "bg-gradient-to-r from-blue-600 to-sky-500";
+        ? "border-emerald-200 bg-emerald-100 text-emerald-800"
+        : "border-slate-300 bg-white text-slate-800";
   
   return (
     <button disabled={questionAnswered} onClick={handleAnswerClick} 
-     className={`w-72 font-semibold px-6 flex justify-center text-white py-3.5 text-lg
-       cursor-pointer rounded-xl transition-all duration-200 ease-out transform shadow-md border border-white/15
-       ${!questionAnswered ? "hover:shadow-xl hover:scale-[1.02] hover:-translate-y-0.5 active:scale-95 active:translate-y-0" : "cursor-default"}
-       ${feedbackClass} overflow-hidden`}>{answer}</button>
+     className={`w-72 overflow-hidden rounded-[14px] border px-6 py-3.5 text-lg font-semibold transition-all duration-200 ease-out
+       ${!questionAnswered ? "cursor-pointer shadow-sm hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md active:translate-y-0 active:scale-[0.99]" : "cursor-default"}
+       ${feedbackClass}`}>{answer}</button>
   )
 }

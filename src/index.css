@@ -1,23 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html, body,div #app, #root {
-  height: 100vh;
-  background-color:#e5eaf1;
-  box-sizing: border-box;
-  margin: 0px;
-  padding:0px;
+
+:root {
+  --bg: #eef2f6;
+  --bg-accent: #e3eaf2;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --surface-muted: #f1f5f9;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #d6dee8;
+  --brand: #2563eb;
+  --brand-strong: #1d4ed8;
+  --success: #15803d;
+  --danger: #b91c1c;
+  --radius-card: 18px;
+  --radius-control: 12px;
+  --shadow-card: 0 12px 26px rgba(15, 23, 42, 0.1);
+  --shadow-control: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
-body {
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
   margin: 0;
-  font-family: 'Open Sans', sans-serif,
-    sans-serif;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% -10%, rgba(148, 163, 184, 0.16) 0%, transparent 46%),
+    radial-gradient(circle at 90% 120%, rgba(203, 213, 225, 0.38) 0%, transparent 52%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-accent) 100%);
+  color: var(--text);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .scrollbar-hide {

@@ -91,14 +91,14 @@ export default function PopulationQuiz() {
 
   const getButtonClassName = (countryName) => {
     if (!showPopulationReveal) {
-      return 'w-72 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 text-white font-semibold py-3.5 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all'
+      return 'w-72 rounded-[14px] border border-slate-300 bg-white px-5 py-3.5 font-semibold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md active:translate-y-0 active:scale-[0.99]'
     }
 
     if (countryName === correctCountryName) {
-      return 'w-72 rounded-xl bg-emerald-600 text-white font-semibold py-3.5 px-5 shadow-lg scale-[1.02] transition-all'
+      return 'w-72 rounded-[14px] border border-emerald-200 bg-emerald-100 px-5 py-3.5 font-semibold text-emerald-800 shadow-sm transition-all'
     }
 
-    return 'w-72 rounded-xl bg-rose-500 text-white font-semibold py-3.5 px-5 shadow-md transition-all'
+    return 'w-72 rounded-[14px] border border-rose-200 bg-rose-100 px-5 py-3.5 font-semibold text-rose-800 shadow-sm transition-all'
   }
 
   useEffect(() => {
@@ -113,10 +113,13 @@ export default function PopulationQuiz() {
     <QuizLayout
       showModal={quiz.showModal}
       children={
-        <div className="flex flex-col items-center justify-center gap-5 mt-4">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Population Quiz</h1>
+        <div className="mt-4 flex flex-col items-center justify-center gap-6">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Challenge Mode</p>
+            <h1 className="mt-1 text-3xl font-bold tracking-tight text-[var(--text)]">Population Quiz</h1>
+          </div>
 
-          <div className="px-4 py-2 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-medium text-sm">
+          <div className="rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-semibold tracking-[0.02em] text-blue-900 shadow-[0_3px_10px_rgba(37,99,235,0.16)]">
             Choose the country with the larger population
           </div>
 
@@ -124,7 +127,7 @@ export default function PopulationQuiz() {
           {error ? <p className="text-[#b0433f]">Failed to load countries.</p> : null}
 
           {!loading && !error && hasPair ? (
-            <div className="w-full flex flex-col items-center gap-4 mt-8">
+            <div className="mt-7 flex w-full flex-col items-center gap-4">
               <button
                 disabled={isResolvingAnswer}
                 onClick={() => handlePick(leftCountry)}
@@ -137,7 +140,7 @@ export default function PopulationQuiz() {
                 {showPopulationReveal ? leftCountry.population.toLocaleString() : ''}
               </div>
 
-              <span className="text-slate-500 font-semibold">VS</span>
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">VS</span>
 
               <button
                 disabled={isResolvingAnswer}
@@ -153,7 +156,7 @@ export default function PopulationQuiz() {
             </div>
           ) : null}
 
-          <div className="">
+          <div className="mt-1">
             <Score numberCorrect={quiz.numberCorrect} numberGuessed={quiz.numberGuessed} />
           </div>
         </div>
