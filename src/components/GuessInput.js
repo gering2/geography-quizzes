@@ -10,12 +10,13 @@ export default function GuessInput({activeGame,showModal,handleInputChange,check
       <div className="mt-8 flex w-full max-w-md flex-row items-center justify-center gap-2.5">
         <input
           id="guessInput"
+          type="text"
           autoComplete="off"
           placeholder="Type a country..."
           disabled={!activeGame}
           onKeyDown={(e) => {checkForSubmit(e)}}
           onChange={(e) => handleInputChange(e)}
-          className="w-full rounded-[var(--radius-control)] border border-slate-300 bg-white px-4 py-2.5 text-[1.02rem] font-semibold leading-6 tracking-[0.01em] text-slate-900 caret-blue-600 shadow-[var(--shadow-control)] outline-none transition-all placeholder:font-medium placeholder:tracking-normal placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:shadow-[0_6px_14px_rgba(37,99,235,0.15)] focus:ring-2 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-45"
+          className="w-full min-h-[46px] rounded-[var(--radius-control)] border border-slate-300 bg-white px-[1.05rem] py-2.5 text-[1.02rem] font-semibold leading-normal tracking-normal text-slate-900 caret-blue-600 shadow-[var(--shadow-control)] outline-none transition-all placeholder:font-medium placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:shadow-[0_6px_14px_rgba(37,99,235,0.15)] focus:ring-2 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-45"
         ></input>
         <button
           disabled={activeGame || showModal}
