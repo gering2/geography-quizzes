@@ -3,14 +3,13 @@ A geography quiz app: Take a 1-minute-long flag quiz by typing in the country fo
 ## Screenshots
 
 ### Flag Quiz
-![Flag Quiz screenshot](https://github.com/user-attachments/assets/aa495cc9-7202-4619-a0ad-ccf1df33dd16)
-)
+![Flag Quiz screenshot](https://github.com/user-attachments/assets/dff008d0-6a0f-4333-9949-d66cd2b9c144)
 
 ### Capital Quiz
-![Capital Quiz screenshot](https://github.com/user-attachments/assets/38ed5f6f-85ec-4cc6-905a-6ab58da285ec)
+![Capital Quiz screenshot](https://github.com/user-attachments/assets/7f55c6ff-354c-4f93-9f6e-620d6f37f064)
 
 ### Population Quiz
-![Population Quiz screenshot](https://github.com/user-attachments/assets/6c12a652-98a5-486d-9032-ba63b5df4866)
+![Population Quiz screenshot](https://github.com/user-attachments/assets/70f9bc90-396a-4b75-b90f-8d2213d2e5cd)
 
 
 
