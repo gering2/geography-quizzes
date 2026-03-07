@@ -6,11 +6,11 @@ export default function Score(props) {
     : 0;
 
   return (
-    <div className="flex items-center gap-3 rounded-full bg-white border border-gray-300 shadow-sm px-4 py-2 text-sm text-gray-700">
+    <div className="flex items-center gap-3 rounded-full bg-white border border-slate-300 shadow-sm px-4 py-2 text-sm text-slate-700">
       <span className="font-semibold">Score</span>
-      <span className="h-4 w-px bg-gray-300" />
+      <span className="h-4 w-px bg-slate-300" />
       <span>{props.numberCorrect}/{props.numberGuessed}</span>
-      <span className="h-4 w-px bg-gray-300" />
+      <span className="h-4 w-px bg-slate-300" />
       <span className="font-semibold text-blue-700">{accuracy}%</span>
     </div>
   )

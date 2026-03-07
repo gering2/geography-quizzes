@@ -91,7 +91,7 @@ export default function PopulationQuiz() {
 
   const getButtonClassName = (countryName) => {
     if (!showPopulationReveal) {
-      return 'w-72 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-3.5 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all'
+      return 'w-72 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 text-white font-semibold py-3.5 px-5 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all'
     }
 
     if (countryName === correctCountryName) {
@@ -114,14 +114,14 @@ export default function PopulationQuiz() {
       showModal={quiz.showModal}
       children={
         <div className="flex flex-col items-center justify-center gap-5 mt-4">
-          <h1 className="text-3xl font-bold text-black tracking-tight">Population Quiz</h1>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Population Quiz</h1>
 
-          <div className="px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-medium text-sm">
+          <div className="px-4 py-2 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-medium text-sm">
             Choose the country with the larger population
           </div>
 
-          {loading ? <p className="text-gray-600">Loading countries...</p> : null}
-          {error ? <p className="text-red-600">Failed to load countries.</p> : null}
+          {loading ? <p className="text-slate-600">Loading countries...</p> : null}
+          {error ? <p className="text-[#b0433f]">Failed to load countries.</p> : null}
 
           {!loading && !error && hasPair ? (
             <div className="w-full flex flex-col items-center gap-4 mt-8">
@@ -133,11 +133,11 @@ export default function PopulationQuiz() {
                 {leftCountry.name.common}
               </button>
 
-              <div className="h-6 text-sm text-gray-700 font-medium">
+              <div className="h-6 text-sm text-slate-700 font-medium">
                 {showPopulationReveal ? leftCountry.population.toLocaleString() : ''}
               </div>
 
-              <span className="text-gray-500 font-semibold">VS</span>
+              <span className="text-slate-500 font-semibold">VS</span>
 
               <button
                 disabled={isResolvingAnswer}
@@ -147,7 +147,7 @@ export default function PopulationQuiz() {
                 {rightCountry.name.common}
               </button>
 
-              <div className="h-6 text-sm text-gray-700 font-medium">
+              <div className="h-6 text-sm text-slate-700 font-medium">
                 {showPopulationReveal ? rightCountry.population.toLocaleString() : ''}
               </div>
             </div>

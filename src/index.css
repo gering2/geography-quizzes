@@ -3,7 +3,7 @@
 @tailwind utilities;
 html, body,div #app, #root {
   height: 100vh;
-  background-color:#1B1717;
+  background-color:#e5eaf1;
   box-sizing: border-box;
   margin: 0px;
   padding:0px;

@@ -6,9 +6,8 @@ import PopulationQuiz from '../populationQuiz/PopulationQuiz'
 import { Routes,BrowserRouter,Route } from 'react-router-dom'
 import { CountriesProvider } from '../../context/CountriesContext'
 export default function Layout() {
-   
   return (
-    <div class="flex flex-col h-full">
+    <div className="flex flex-col h-full">
       <BrowserRouter> 
           <CountriesProvider>
             <SideNav></SideNav> 

@@ -38,8 +38,8 @@ export default function ScoreModal(props) {
   };
 
   return (
-      <div className="w-[90vw] max-w-2xl h-[600px] shadow-2xl rounded-xl overflow-hidden   flex flex-col mx-auto">
-        <div className="relative text-white flex flex-col font-medium items-center bg-gradient-to-r from-blue-600 to-blue-500 justify-center rounded-t-xl py-4 px-6 flex-shrink-0">
+      <div className="w-[90vw] max-w-2xl h-[600px] shadow-2xl rounded-xl overflow-hidden flex flex-col mx-auto">
+    <div className="relative text-white flex flex-col font-medium items-center bg-gradient-to-r from-blue-600 to-sky-500 justify-center rounded-t-xl py-4 px-6 flex-shrink-0">
                 <button
                 className="absolute left-4 h-9 w-9 rounded-full bg-white/20 hover:bg-white/30 hover:scale-110 transition-all flex items-center justify-center font-bold text-lg"
                 onClick = {() => {props.setShowModal(false);

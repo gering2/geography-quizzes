@@ -52,7 +52,7 @@ export default function CapitalQuizOption({ addToHistory, answer, country, setQu
       ? "bg-emerald-600 scale-[1.02] shadow-emerald-400/60"
       : shouldHighlight
         ? "bg-emerald-600 animate-pulse scale-[1.02] shadow-emerald-400/60"
-        : "bg-gradient-to-r from-blue-500 to-indigo-500";
+        : "bg-gradient-to-r from-blue-600 to-sky-500";
   
   return (
     <button disabled={questionAnswered} onClick={handleAnswerClick} 

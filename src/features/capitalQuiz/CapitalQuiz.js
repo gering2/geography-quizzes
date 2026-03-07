@@ -67,18 +67,18 @@ export default function CapitalQuiz() {
       children={
         <div className="justify-center items-center flex flex-col">
           <div className="text-center">
-            <h2 className="text-black text-3xl font-bold tracking-tight">Guess The Capital</h2>
+            <h2 className="text-slate-900 text-3xl font-bold tracking-tight">Guess The Capital</h2>
           </div>
 
           {!quiz.showModal && country ? (
-            <div className="mb-4 mt-4 px-4 py-1.5 border border-indigo-100 rounded-full bg-indigo-50 text-indigo-700 shadow-sm font-medium">
+            <div className="mb-4 mt-4 px-4 py-1.5 border border-slate-300 rounded-full bg-slate-100 text-slate-700 shadow-sm font-medium">
               {quiz.minutesLeft}:{quiz.secondsLeft < 10 ? '0' : ''}{quiz.secondsLeft}
             </div>
           ) : null}
 
           {country && !quiz.showModal ? (
-            <div className="flex justify-center text-center mt-2 mb-6 text-white bg-gradient-to-r from-indigo-600 to-blue-600 px-6 rounded-xl py-3 text-xl shadow-lg max-w-full border border-indigo-500/30">
-              What is the capital of&nbsp;<u className="font-bold decoration-indigo-100 underline-offset-2">{country.name.common}</u>?
+            <div className="flex justify-center text-center mt-2 mb-6 text-white bg-gradient-to-r from-blue-600 to-sky-500 px-6 rounded-xl py-3 text-xl shadow-lg max-w-full border border-blue-500/30">
+              What is the capital of&nbsp;<u className="font-bold decoration-blue-100 underline-offset-2">{country.name.common}</u>?
             </div>
           ) : null}
 
@@ -101,7 +101,7 @@ export default function CapitalQuiz() {
           ) : null}
 
           {!country && !quiz.showModal ? (
-            <div className="mt-6 flex items-center gap-3 text-gray-600">
+            <div className="mt-6 flex items-center gap-3 text-slate-600">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
               <span>Loading capitals...</span>
             </div>
