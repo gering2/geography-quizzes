@@ -3,7 +3,7 @@ A geography quiz app: Take a 1-minute-long flag quiz by typing in the country fo
 ## Screenshots
 
 ### Flag Quiz
-![Flag Quiz screenshot](https://github.com/user-attachments/assets/aa495cc9-7202-4619-a0ad-ccf1df33dd16>
+![Flag Quiz screenshot](https://github.com/user-attachments/assets/aa495cc9-7202-4619-a0ad-ccf1df33dd16)
 )
 
 ### Capital Quiz
