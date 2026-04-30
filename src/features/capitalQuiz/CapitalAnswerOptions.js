@@ -43,7 +43,7 @@ export default function CapitalAnswerOptions(props) {
   }, [props.chooseRandomCountry, props.setShowModal, questionAnswered, quizFinished])
   
   return (
-    <div className="flex flex-col gap-4 h-full items-center">
+    <div className="flex flex-col gap-3 h-full w-full items-stretch sm:items-center">
       {[...props.quizAnswers].map((quizCountry) => { //render 4 multiple choice questions
         return <CapitalQuizOption 
           key={quizCountry.name.common} 

@@ -38,7 +38,7 @@ export default function ScoreModal(props) {
   };
 
   return (
-      <div className="mx-auto flex h-[600px] w-[92vw] max-w-2xl flex-col overflow-hidden rounded-[var(--radius-card)] border border-slate-200 bg-white shadow-[var(--shadow-card)]">
+      <div className="mx-auto flex h-[min(600px,85svh)] w-[92vw] max-w-2xl flex-col overflow-hidden rounded-[var(--radius-card)] border border-slate-200 bg-white shadow-[var(--shadow-card)]">
     <div className="relative flex flex-shrink-0 flex-col items-center justify-center border-b border-slate-200 bg-slate-50 px-6 py-5 font-medium text-slate-900">
                 <button
                 className="absolute left-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 transition-colors hover:bg-slate-100"
@@ -61,20 +61,26 @@ export default function ScoreModal(props) {
                 <tr className="bg-gradient-to-b from-slate-700 to-slate-800 text-white shadow-md">
                   {columns.map((column) => (
                     column.key === 'answer' ? (
-                      <th key={column.key} className="px-5 py-3 text-sm font-semibold">
+                      <th key={column.key} className="px-2 py-3 text-xs sm:px-5 sm:text-sm font-semibold">
                         {column.label} <span className="font-bold text-blue-200">({props.numberCorrect}/{props.numberGuessed})</span>
                       </th>
                     ) : (
-                      <th key={column.key} className={`px-5 py-3 text-sm font-semibold ${column.key === 'result' ? 'text-center' : ''}`}>{column.label}</th>
+                      <th key={column.key} className={`px-2 py-3 text-xs sm:px-5 sm:text-sm font-semibold ${column.key === 'result' ? 'text-center' : ''}`}>{column.label}</th>
                     )
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {props.guessHistory.map((item, idx) => (
-                  <tr key={idx} className={`${item.correct ? 'bg-emerald-50/80' : 'bg-rose-50/80'} border-b border-slate-200/70 transition-all hover:brightness-[0.98] last:border-b-0`}>
+                  <tr key={idx} className={item.correct ? 'bg-green-50' : 'bg-red-50'}>
                     {columns.map((column) => (
-                      <td key={column.key} className={`px-5 py-3 text-slate-800 ${column.key === 'result' ? 'text-center text-xl' : ''}`}>
+                      <td key={column.key} className={
+                        column.key === 'result'
+                          ? (item.correct
+                              ? 'text-green-500 text-center text-lg sm:text-2xl px-2 sm:px-5 py-3 font-semibold'
+                              : 'text-red-500 text-center text-lg sm:text-2xl px-2 sm:px-5 py-3 font-semibold')
+                          : 'px-2 sm:px-5 py-3 text-sm sm:text-base font-medium'
+                      }>
                         {renderCell(item, column)}
                       </td>
                     ))}

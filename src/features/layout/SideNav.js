@@ -16,7 +16,7 @@ export default function SideNav() {
           </div>
           <h1 className="text-lg font-bold tracking-tight text-[var(--text)] sm:text-xl">Geography Quizzes</h1>
         </div>
-        <ul className="flex w-full flex-wrap justify-start gap-2 sm:w-auto sm:justify-end sm:gap-3">
+        <ul className="scrollbar-hide flex w-full flex-nowrap justify-start gap-2 overflow-x-auto sm:w-auto sm:justify-end sm:gap-3">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -26,7 +26,7 @@ export default function SideNav() {
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M5 21V4m0 0h10l-1.6 3L15 10H5" />
             </svg>
-            Flag Quiz
+            Flag
           </NavLink>
           <NavLink
             to="/capital-quiz"
@@ -37,7 +37,7 @@ export default function SideNav() {
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M3 9h18M4.5 9V7l7.5-3 7.5 3v2M6 9v7m4-7v7m4-7v7m4-7v7M3 20h18" />
             </svg>
-            Capital Quiz
+            Capital
           </NavLink>
           <NavLink
             to="/population-quiz"
@@ -49,7 +49,7 @@ export default function SideNav() {
               <path d="M5 18V9m7 9V6m7 12v-4" />
               <path d="M3 20h18" />
             </svg>
-            Population Quiz
+            Population
           </NavLink>
         </ul>
       </div>

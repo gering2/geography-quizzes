@@ -1,12 +1,12 @@
-import React from 'react'
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
-import GuessInput from '../../components/GuessInput'
-import FlagQuizContent from './FlagQuizContent'
-import QuizLayout from '../../components/QuizLayout'
-import ScoreModal from '../../components/ScoreModal'
-import { useQuiz } from '../../hooks/useQuiz'
-import { useCountriesShuffle } from '../../hooks/useCountriesShuffle'
-import { useCountriesData } from '../../context/CountriesContext'
+
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import GuessInput from '../../components/GuessInput';
+import FlagQuizContent from './FlagQuizContent';
+import QuizLayout from '../../components/QuizLayout';
+import ScoreModal from '../../components/ScoreModal';
+import { useQuiz } from '../../hooks/useQuiz';
+import { useCountriesShuffle } from '../../hooks/useCountriesShuffle';
+import { useCountriesData } from '../../context/CountriesContext';
 
 export default function FlagQuiz() {
   const quiz = useQuiz(60); // 60 second quiz
@@ -25,8 +25,9 @@ export default function FlagQuiz() {
   )
   const { country, chooseRandomCountry } = useCountriesShuffle(countries)
   const [flagText, setFlagText] = useState('')
-  // name of the most recent incorrect guess (shown briefly)
+  // name of the most recent incorrect/correct guess (shown briefly)
   const [missedName, setMissedName] = useState('')
+  const [correctName, setCorrectName] = useState('')
   const submitLockRef = useRef(false)
   const submitUnlockTimerRef = useRef(null)
   const handleInputChange = function(e) {
@@ -38,21 +39,19 @@ export default function FlagQuiz() {
       return;
     }
     const normalizedGuess = guess.trim().toLowerCase();
-    //set alternate spellings of generated country to lowercase 
     let lowerAltSpellings = country.altSpellings?.map((country) => {
       return country.toLowerCase() ?? [];
     })
-    //if guess is correct
     const isCorrect =
       normalizedGuess === country.name.common.toLowerCase() ||
       lowerAltSpellings.includes(normalizedGuess);
-
-    if (!isCorrect) {
+    if (isCorrect) {
+      setCorrectName(country.name.common);
+      setTimeout(() => setCorrectName(''), 2000);
+    } else {
       setMissedName(country.name.common);
       setTimeout(() => setMissedName(''), 2000);
     }
-
-    // add entry to history (hook handles score increment)
     quiz.addToHistory(guess.trim(), country.name.common, country.flags.png, isCorrect);
     chooseRandomCountry();
   }, [country, quiz, chooseRandomCountry])
@@ -99,10 +98,11 @@ export default function FlagQuiz() {
         <>
           <GuessInput
             checkForSubmit={checkForSubmit}
-            activeGame={quiz.activeGame}
             showModal={quiz.showModal}
             handleInputChange={handleInputChange}
             startGame={quiz.startGame}
+            activeGame={quiz.activeGame}
+            value={flagText}
           />
           <FlagQuizContent
             setShowModal={quiz.setShowModal}
@@ -115,6 +115,7 @@ export default function FlagQuiz() {
             secondsLeft={quiz.secondsLeft}
             showModal={quiz.showModal}
             missedName={missedName}
+            correctName={correctName}
             guessHistory={quiz.guessHistory}
           />
         </>

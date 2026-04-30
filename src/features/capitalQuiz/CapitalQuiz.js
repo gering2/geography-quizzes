@@ -76,7 +76,7 @@ export default function CapitalQuiz() {
         <div className="flex flex-col items-center justify-center">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Challenge Mode</p>
-            <h2 className="mt-1 text-3xl font-bold tracking-tight text-[var(--text)]">Guess The Capital</h2>
+            <h2 className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">Guess The Capital</h2>
           </div>
 
           {!quiz.showModal && country ? (
@@ -86,7 +86,7 @@ export default function CapitalQuiz() {
           ) : null}
 
           {country && !quiz.showModal ? (
-            <div className="mb-6 mt-4 flex max-w-full justify-center rounded-[14px] border border-slate-200 bg-slate-50 px-6 py-3 text-center text-xl text-slate-800 shadow-[0_2px_8px_rgba(15,23,42,0.05)]">
+            <div className="mb-6 mt-4 flex max-w-full justify-center rounded-[14px] border border-slate-200 bg-slate-50 px-4 py-3 text-center text-base sm:text-xl text-slate-800 shadow-[0_2px_8px_rgba(15,23,42,0.05)]">
               What is the capital of&nbsp;<u className="font-bold decoration-slate-400 underline-offset-2">{country.name.common}</u>?
             </div>
           ) : null}

@@ -25,7 +25,7 @@ export default function FlagQuizContent(props) {
         </div>
       ) : null}
 
-      <Flags showModal={props.showModal} country={props.country} />
+      <Flags showModal={props.showModal} country={props.country} animate={props.flagAnimate} />
 
       {/* Score in fixed position, always visible */}
       <div className="mt-7">
@@ -36,7 +36,12 @@ export default function FlagQuizContent(props) {
       </div>
 
       {/* reserve space so modal size stays stable */}
-      <div className="mt-4 flex h-9 items-center justify-center">
+      <div className="mt-4 flex h-9 items-center justify-center gap-2">
+        {props.correctName ? (
+          <div className="rounded-md border border-green-200 bg-green-50 px-3 py-1 font-semibold text-green-700">
+            Correct!
+          </div>
+        ) : null}
         {props.missedName ? (
           <div className="rounded-md border border-rose-200 bg-rose-50 px-3 py-1 font-semibold text-rose-700">
             Missed: {props.missedName}

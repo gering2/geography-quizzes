@@ -56,7 +56,7 @@ export default function CapitalQuizOption({ addToHistory, answer, country, setQu
   
   return (
     <button disabled={questionAnswered} onClick={handleAnswerClick} 
-     className={`w-72 overflow-hidden rounded-[14px] border px-6 py-3.5 text-lg font-semibold transition-all duration-200 ease-out
+     className={`w-full sm:max-w-72 overflow-hidden rounded-[14px] border px-6 py-4 text-base sm:text-lg font-semibold transition-all duration-200 ease-out
        ${!questionAnswered ? "cursor-pointer shadow-sm hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md active:translate-y-0 active:scale-[0.99]" : "cursor-default"}
        ${feedbackClass}`}>{answer}</button>
   )
