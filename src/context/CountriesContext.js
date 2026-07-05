@@ -3,10 +3,8 @@ import { useCountriesFetch } from '../hooks/useCountriesFetch'
 
 const CountriesContext = createContext(null)
 
-const SHARED_COUNTRY_FIELDS = 'name,flags,altSpellings,capital,population'
-
 export const CountriesProvider = ({ children }) => {
-  const { countries, loading, error } = useCountriesFetch(SHARED_COUNTRY_FIELDS)
+  const { countries, loading, error } = useCountriesFetch()
 
   const value = useMemo(
     () => ({ countries, loading, error }),
