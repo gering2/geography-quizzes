@@ -14,8 +14,7 @@ A geography quiz app: Take a 1-minute-long flag quiz by typing in the country fo
 
 
 
-## Authors
-* #### Colton Gering
+
 
 ## Built using
 [React.js](https://reactjs.org/) <br>
